@@ -23,7 +23,11 @@ function App({anecdotes}: {anecdotes: string[]}) {
     
   };
 
-  useEffect(() => setMaxVoted(maxVotedFunc(votes)), [maxVoted]);
+  useEffect(() => {
+    if (Object.values(votes).some(vote => vote != 0)) {
+      setMaxVoted(maxVotedFunc(votes));
+    }
+  }, [votes]);
 
   return (
     <>
